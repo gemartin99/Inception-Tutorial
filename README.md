@@ -84,8 +84,11 @@ Para realizar la instalación se requiere de un software de virtualización. En 
 
 <img width="796" alt="Screen Shot 2023-09-29 at 1 00 38 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/fc3ec5d6-df9b-4723-840b-e1a3c203c4d6">
 
+<img width="796" alt="Screen Shot 2023-09-29 at 1 12 48 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/33ad31b4-be0b-4e1b-acb9-d0e14df9f8a4">
 
+<img width="800" alt="Screen Shot 2023-09-29 at 1 13 00 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/9b4f1226-a852-479f-a8d3-523f44c923a3">
 
+<img width="797" alt="Screen Shot 2023-09-29 at 1 14 06 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/9c39135c-32ef-467c-87cb-9de7bab7af82">
 
 
 
