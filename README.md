@@ -92,12 +92,49 @@ Para realizar la instalación se requiere de un software de virtualización. En 
 
 
 
+## Archivo .yml
 
+🧠 Que es un archivo yml❓
 
+Es un archivo de configuración utilizado para definir y gestionar múltiples contenedores en un entorno Docker. Permite describir las relaciones, configuraciones y servicios que compondrán una aplicación o conjunto de servicios interconectados.
 
+<img width="765" alt="Screen Shot 2023-10-03 at 12 25 20 AM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/8355f598-fe5f-4ae0-b3fc-5adcf0f94158">
 
+```
+networks:
+    gemartinnet:
+        name: gemartinnet
+        driver: bridge
+```
 
+En este apartado definimos las redes. En este caso definimos una red llamada ```gemartinnet``` con el controlador de red como ```bridge```. Esto lo que va a indicar esque sera una red de tipo bridge, lo que permitira a los contenedores comunicarse entre sí en el mismo host.
 
+```
+services:
+    nginx:
+        container_name: nginx
+        build: ./requirements/nginx
+        image: nginx
+        ports:
+        - 443:443
+        volumes:
+        - wordpress_data:/var/www/html
+        restart: always
+        networks:
+        - gemartinnet
+```
+
+En este apartado se definen los servicios que ejecutaran los contenedores. El primer servicio es ```nginx```. Esto es lo que hacen las siguientes configuraciones:
+
+container_name → Asigna un nombre especifico al contenedor que se crea a partir de este servicio.
+
+build → Indica la ubicacion del Dockerfile y los archivos necesarios para construir la imagen del contenedor.
+
+image → Indica a docker que imagen debe usar como base para el servicio que estas definiendo. Si la imagen no se encuentra a nivel local en el sistema docker la descargara automaticamente.
+
+ports → Indicamos que queremos hacer un mapeo de puertos, esto es una redireccion de puertos de un sistema operativo a otro. Para explicarlo mejor, tenemos un servidor web (nginx) ejecutandose dentro del contenedor, por defecto no es accesible desde fuera del contenedor. Al hacer el mapeo de puertos especificaremos el puerto del servidor web para que este disponible desde el sistema anfitrion. Dicho esto ponemos 443:443 para indicar el PUERTO_DEL_HOST:PUERTO_DEL_CONTENEDOR. 
+
+volumes → 
 
 
 
