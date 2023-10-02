@@ -134,10 +134,48 @@ image → Indica a docker que imagen debe usar como base para el servicio que es
 
 ports → Indicamos que queremos hacer un mapeo de puertos, esto es una redireccion de puertos de un sistema operativo a otro. Para explicarlo mejor, tenemos un servidor web (nginx) ejecutandose dentro del contenedor, por defecto no es accesible desde fuera del contenedor. Al hacer el mapeo de puertos especificaremos el puerto del servidor web para que este disponible desde el sistema anfitrion. Dicho esto ponemos 443:443 para indicar el PUERTO_DEL_HOST:PUERTO_DEL_CONTENEDOR. 
 
-volumes → 
+volumes → Creamos un volumen en el host al directorio que especifiquemos en el contenedor. El proceso de montar un volumen se asemeja a "conectar" una carpeta del sistema operativo anfitrión con una carpeta dentro del contenedor. Esto permite que los datos sean compartidos y persistan incluso después de que el contenedor se detenga o se reinicie. Es importante comentar que en esta parte solo diremos que el contenido del volumen llamado wordpress_data lo encontraremos en la ubicacion /var/www/html dentro del contenedor. La configuracion del volumen wordpress_data y mariadb_data es definida al final del fichero. Otra cosa importante a comentar es que WordPress y Nginx comparten volumen, esto lo utilizamos para servir archivos del sitio web desde el contenedor de NGINX, y si se actualizan o modifican esos archivos desde el contenedor WordPress los cambios se reflejarán inmediatamente en el sitio web sin necesidad de detener y volver a iniciar el contenedor de NGINX. Esto proporciona una forma eficiente de trabajar con aplicaciones web y mantener los datos consistentes.
 
+restart → Indica como debe comportarse el contenedor en caso de que se detenga. Basicamente lo que decimos es que si el contenedor asociado al servicio Nginx se detiene por algun motivo Docker lo reiniciara automaticamente.
 
+networks → Especifica a que red o redes debe estar conectado un contenedor. En nuestro caso le decimos que el contenedor asociado al servicio nginx estara conectada a la red gemartinnet.
 
+```
+mariadb:
+    container_name: mariadb
+    build:
+       context: ./requirements/mariadb
+    image: mariadb
+    volumes:
+     - mariadb_data:/var/lib/mysql
+    restart: always
+    networks:
+     - gemartinnet
+    env_file:
+     - .env
+```
+
+Como todos los campos han sido explicados previamente menos env_file solo explicare este.
+
+env_file → Permite especificar un archivo que contiene variables de entorno para ser utilizadas por el contenedor. Estas variables de entorno pueden ser utilizadas dentro del contenedor, por la base de datos MariaDB en este caso, para configurar el entorno de ejecución.
+
+```
+wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    image: wordpress
+    depends_on:
+     - mariadb
+    volumes:
+     - wordpress_data:/var/www/html
+    restart: always
+    networks:
+     - gemartinnet
+    env_file:
+     - .env
+```
+
+Todos los campos han sido explicados previamente
 
 
 
