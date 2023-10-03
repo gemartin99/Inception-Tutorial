@@ -177,7 +177,34 @@ wordpress:
 
 Todos los campos han sido explicados previamente
 
+```
+volumes:
+    mariadb_data:
+        driver: local
+        driver_opts:
+            type: none
+            device: /home/gemartin/data/mysql
+            o: bind
 
+    wordpress_data:
+        driver: local
+        driver_opts:
+            type: none
+            device: /home/gemartin/data/wordpress
+            o: bind
+```
+
+Finalmente definimos los volumenes que hemos mencionado anteriormente. En estos campos especificaremos como seran manejados por Docker.
+
+driver → Define el tipo de controlador que Docker utilizara para manejar este volumen. En este caso ponemos local, lo que significa que el volumen estara almacenado en el sistema local de archivos del host.
+
+driver_opts → Es un conjunto de opciones especificas del controlador que permiten configurar como se va a manejar el volumen. En este caso establecemos 3 opciones: type, device y o. Vamos a explicar una por una.
+
+- type → Especifica el tipo de sistema de archivos que utilizara para el volumen. El uso que doy (none) indica que no se debe aplicar un tipo de sistema de archivos especifico. 
+
+- device → Especifica el directorio o dispositivo en el sistema de archivos del host que se utilizaran para almacenar los datos del volumen. 
+
+- o (opciones de montaje) → Esta es una serie de opciones que se utilizan cuando se monta el volumen. En este caso, o: bind indica que se debe realizar un enlace directo (bind) entre el volumen y el directorio del host, lo que permite que los datos sean accesibles desde el sistema de archivos del host.
 
 
 
