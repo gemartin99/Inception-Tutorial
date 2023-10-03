@@ -245,6 +245,33 @@ ENTRYPOINT → Define el comando que se ejecutara cuando el contenedor se inicie
 
 CMD → Establece el comando predeterminado que se ejecutara cuando el contenedor se inicie. En este caso lo que haremos sera iniciar el servidor nginx en modo demonio, esto lo que quiere decir es que el servidor se queda en ejecucion en segundo plano. La terminal esta libre para que el usuario, es decir, nosotros podamos utilizarla.
 
+Script Nginx
+
+```
+#!/bin/bash
+if [ ! -f /etc/ssl/certs/nginx.crt ]; then
+echo "Nginx: setting up ssl ...";
+openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/ssl/private/nginx.key -out /etc/ssl/certs/nginx.crt -subj "/C=ES/ST=Barcelona/L=Barcelona/O=wordpress/CN=gemartin.42.fr";
+echo "Nginx: ssl is set up!";
+fi
+exec "$@"
+```
+
+Resumidamente , lo que hara este script es verificar si el certificado SSL (nginx.crt) existe en la ubicacion especificada. Si no existe lo generearemos y luego ejecutaremos los comandos que reciba como argumentos. Solo entrare en la explicacion de los campos escogidos para la generacion del certificado.
+
+-x509 → Indica que se debe generar un certificado autofirmado.
+
+-nodes → Significa que no se utilizara contraseña.
+
+-days 365 → Indica que el certificado sera valido 365 dias.
+
+-newkey rsa:4096 → Generara una nueva clase RSA de 4096 bits.
+
+-keyout ruta → Indica donde se guardara la clave privada.
+
+-out ruta → Indica donde se guardara el certificado.
+
+-subj → Establece los detalles del sujeto del certificado.
 
 
 
