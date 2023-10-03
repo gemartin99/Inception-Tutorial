@@ -324,9 +324,33 @@ location / → Define como manejar las peticiones a rutas que no coinciden con o
 
 location ~ → Define como manejar las peticiones terminadas en .php.
 
+# MariaDB
 
+## Dockerfile
 
+## Conf file
 
+## Script MariaDB
+
+<img width="805" alt="Screen Shot 2023-06-20 at 12 07 06 PM" src="https://github.com/gemartin99/inception/assets/66915274/0af6986c-f984-42c1-8a05-551b21ef3e25">
+
+🔴 Inicia el servicio MySQL. El servidor estara lito para aceptar conexiones.
+
+🟠 Condicion que si no existe el directorio de la base de datos entrara al if. Si no se cumple la condicion directamente pasara al paso 🟤.
+
+🟡 Nos conectamos a MySQL mediante nuestro usuario y contraseña (utilizamos las variables de entorno) y ejecutamos la instruccion ```CREATE DATABASE $MYSQL_DATABASE;``` para crear una nueva base de datos con el nombre almacenado en la variable de entorno.
+
+🟢 Crearemos un usuario dentro de la base de datos especificando el nombre y la contraseña (utilizamos las variables de entorno).
+
+🌐 Le concedemos todos los permisos al usuario recien creado para que pueda acceder a la base de datos y realizar cualquier operación en las tablas.
+
+🔵 Actualizamos los privilegios para que los cambio realizados se apliquen.
+
+🟣 Cambiamos la contraseña por defecto del usuario root de MySQL a la que tenemos almacenada en nuestra variable de entorno.
+
+🟤 Apagamos el servidor utilizando el usuario y contraseña de root.
+
+⚪️ Iniciamos el servidor MySQL de nuevo. Hemos realizado este reinicio para que el servidor se inicie con la configuracion y cambios realizados en el script.
 
 
 
