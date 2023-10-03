@@ -207,11 +207,11 @@ driver_opts → Es un conjunto de opciones especificas del controlador que permi
 - o (opciones de montaje) → Esta es una serie de opciones que se utilizan cuando se monta el volumen. En este caso, o: bind indica que se debe realizar un enlace directo (bind) entre el volumen y el directorio del host, lo que permite que los datos sean accesibles desde el sistema de archivos del host.
 
 
-## Nginx
+# Nginx
 
 🧠 Que es un dockerfile❓ Es un archivo de configuración utilizado para construir una imagen de contenedor en Docker.
 
-Dockerfile 
+## Dockerfile 
 
 ```
 FROM debian:10.11
@@ -245,7 +245,7 @@ ENTRYPOINT → Define el comando que se ejecutara cuando el contenedor se inicie
 
 CMD → Establece el comando predeterminado que se ejecutara cuando el contenedor se inicie. En este caso lo que haremos sera iniciar el servidor nginx en modo demonio, esto lo que quiere decir es que el servidor se queda en ejecucion en segundo plano. La terminal esta libre para que el usuario, es decir, nosotros podamos utilizarla.
 
-Script Nginx
+## Script Nginx
 
 ```
 #!/bin/bash
@@ -273,8 +273,56 @@ Resumidamente , lo que hara este script es verificar si el certificado SSL (ngin
 
 -subj → Establece los detalles del sujeto del certificado.
 
+## Configuracion servidor nginx
 
+```
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name gemartin.42.fr;
 
+    ssl_certificate /etc/ssl/certs/nginx.crt;
+    ssl_certificate_key /etc/ssl/private/nginx.key;
+    ssl_protocols TLSv1.3;
+
+    index index.php;
+    root /var/www/html;
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass wordpress:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_read_timeout 300;
+    }
+}
+```
+server → Indica el inicio de la configuracion del servidor.
+
+listen 443 ssl → Establece que el servidor escuchara por el puerto 443 y que se utilizara el protocolo SSL para las conexiones.
+
+listen [::]:443 ssl → Lo mismo que lo anterior pero esto sera para las conexiones IPv6. 
+
+server_name gemartin.42.fr → Especifica el nombre del servidor.
+
+ssl_certificate → Indica la ubicacion del certificado SSL.
+
+ssl_certificate_key → Indica la ubicacion de la clave privada correspondiente al certificado.
+
+ssl_protocols TLSv1.3 → Establece que el protocolo TLS version 1.3 sera utilizado.
+
+index index.php → Define el archivo que se utilizara como la pagina principal si el cliente no especifica una.
+
+root /var/www/html → Establece el directorio raiz del sitio web.
+
+location / → Define como manejar las peticiones a rutas que no coinciden con otras reglas.
+
+location ~ → Define como manejar las peticiones terminadas en .php.
 
 
 
