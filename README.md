@@ -207,9 +207,43 @@ driver_opts → Es un conjunto de opciones especificas del controlador que permi
 - o (opciones de montaje) → Esta es una serie de opciones que se utilizan cuando se monta el volumen. En este caso, o: bind indica que se debe realizar un enlace directo (bind) entre el volumen y el directorio del host, lo que permite que los datos sean accesibles desde el sistema de archivos del host.
 
 
+## Nginx
 
+🧠 Que es un dockerfile❓ Es un archivo de configuración utilizado para construir una imagen de contenedor en Docker.
 
+Dockerfile 
 
+```
+FROM debian:10.11
+
+RUN apt-get update
+RUN apt-get install -y nginx openssl
+
+EXPOSE 443
+
+COPY ./conf/default /etc/nginx/sites-enabled/default
+COPY ./tools/nginx_start.sh /var/www
+
+RUN chmod +x /var/www/nginx_start.sh
+
+ENTRYPOINT [ "var/www/nginx_start.sh" ]
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+FROM → Especifica la imagen base que se usara como punto de partida para construir el contenedor. En este caso utilizaremos Debian con la version 10.11. En un caso de uso real lo normal seria utilizar la imagen de nginx directamente pero el subject indica claramente que no se pueden utilizar imagenes preconfiguradas.
+
+RUN → Este comando ejecuta el comando dentro del contenedor. En este caso el comando lo que hara es actualizar la lista de paquetes disponibles en los repositorios debian. El siguiente comando run lo que hara es instalar dos paquetes nginx y openssl, el flag -y indica que se debe aceptar automaticamente todas las confirmaciones.
+
+EXPOSE → Especifica que puertos estan disponibles para ser expuestos cuando se ejecute el contenedor. En este caso sera el 443 aunque no tiene un efecto practico por si mismo, me explico, no abre el puerto ni realiza ningun enlace hacia fuera del contenedor. Sirve como informacion para el usuario sobre que puerto es utilizado por la aplicacion dentro del contenedor.
+
+COPY → Copia un archivo de configuracion desde el directorio especificado a nivel local al directorio especificado dentro del contenedor. En este caso copiaremos la configuracion por defecto de nginx a la ruta ```/etc/nginx/sites-enabled/default``` dentro de nuestro contenedor. Acto seguido hacemos lo mismo, en este caso copiamos el script nginx_start.sh al directorio ```/var/www``` del contenedor.
+
+RUN → Cambiaremos los permisos del script que acabamos de copiar al contenedor, de esta manera ya puede ser ejecutado.
+
+ENTRYPOINT → Define el comando que se ejecutara cuando el contenedor se inicie. En este caso se ejecutara el script nginx_start.sh, que es el que acabamos de copiar y cambiar los permisos.
+
+CMD → Establece el comando predeterminado que se ejecutara cuando el contenedor se inicie. En este caso lo que haremos sera iniciar el servidor nginx en modo demonio, esto lo que quiere decir es que el servidor se queda en ejecucion en segundo plano. La terminal esta libre para que el usuario, es decir, nosotros podamos utilizarla.
 
 
 
