@@ -15,11 +15,11 @@ Para realizar la instalación se requiere de un software de virtualización. En 
 
 2 ◦ Escogemos el nombre de nuestra máquina y la carpeta donde estará ubicada. Importante introducir la maquina dentro de la carpeta sgoinfre ya que si no la ubicamos ahí nos quedaremos sin espacio y fallará la instalación (dependiendo del campus la ruta de sgoinfre puede cambiar).
 
-<img width="950" alt="Screen Shot 2023-09-29 at 12 21 06 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/3d7d6d60-57db-41e2-aebb-65f24b96fe61">
+<img width="950" alt="Screen Shot 2023-09-29 at 12 21 06 PM" src="https://github.com/gemartin99/Inception-Tutorial/66915274/3d7d6d60-57db-41e2-aebb-65f24b96fe61">
 
 3 ◦
 
-<img width="948" alt="Screen Shot 2023-09-29 at 12 22 16 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/839003e3-f27a-4408-be9a-7a40193a961b">
+<img width="948" alt="Screen Shot 2023-09-29 at 12 22 16 PM" src="https://github.com/gemartin99/Inception-Tutorial/66915274/839003e3-f27a-4408-be9a-7a40193a961b">
 
 4 ◦
 
@@ -44,7 +44,7 @@ Para realizar la instalación se requiere de un software de virtualización. En 
 
 <img width="799" alt="Screen Shot 2023-09-29 at 12 38 26 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/8f5d0b44-08f4-495f-8a47-9b94a5222ba0">
 
-<img width="798" alt="Screen Shot 2023-09-29 at 12 38 37 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/9ceafe0e-ba3c-4c1e-a0f3-ce66d380bc20">
+<img width="798" alt="Screen Shot 2023-09-29 at 12 38 37 PM" src="https://github.com/gemartin99/Inception-Tutorial/66915274/9ceafe0e-ba3c-4c1e-a0f3-ce66d380bc20">
 
 <img width="806" alt="Screen Shot 2023-09-29 at 12 38 52 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/08e55c36-949a-4c2a-bae5-7c1a12eeea9c">
 
