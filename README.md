@@ -281,7 +281,7 @@ location ~ → Define como manejar las peticiones terminadas en .php.
 
 ## Dockerfile
 
-##Conf file
+## Conf file
 
 ## Script Wordpress
 
