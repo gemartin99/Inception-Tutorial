@@ -301,7 +301,7 @@ location ~ → Define como manejar las peticiones terminadas en .php.
 
 🟤 Iniciamos el servicio PHP-FPM en segundo plano y lo dejamos en ejecucion constante con -F.
 
-Preguntas evaluacion
+# Preguntas evaluacion 
 
 ## ◦ Resumen del proyecto
 
