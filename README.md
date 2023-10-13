@@ -277,8 +277,111 @@ location ~ → Define como manejar las peticiones terminadas en .php.
 
 ⚪️ Iniciamos el servidor MySQL de nuevo. Hemos realizado este reinicio para que el servidor se inicie con la configuracion y cambios realizados en el script.
 
+# WordPress
 
+## Dockerfile
 
+##Conf file
+
+## Script Wordpress
+
+<img width="1008" alt="Screen Shot 2023-10-13 at 10 55 20 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/caa9880f-8b3f-44f2-b303-8a214349e9de">
+
+🔴 Se verifica si el archivo no existe , de ser asi se entra al if.
+
+🟠 Descarga el núcleo de WordPress utilizando la herramienta WP-CLI. La opción ```--allow-root``` permite ejecutar WP-CLI como el usuario root.
+
+🟡 Creamos el archivo de configuracion ```wp-config.php``` con los detalles de la base de datos proporcionado a traves de variables de entorno.
+
+🟢 Realizamos la instalacion de WordPress con los parametros proporcionados en las vaiables de entorno. La opcion --skip-email evita que se envie un correo electronico de notificacion.
+
+🔵 Creamos un nuevo usuario de WordPress con el nombre, correo y contraseña proporcionados en las variables de entorno. En este caso al usuario nuevo se le asigna el rol de autor.
+
+🟣 Descargamos, instalamos y activamos el tema twentysixteen.
+
+🟤 Iniciamos el servicio PHP-FPM en segundo plano y lo dejamos en ejecucion constante con -F.
+
+Preguntas evaluacion
+
+## ◦ Resumen del proyecto
+
+Cómo funcionan docker y docker compose
+
+Diferencia entre una imagen Docker utilizada con docker compose y sin docker compose
+
+Ventajas de Docker frente a las máquinas virtuales
+
+Que la estructura de directorios sea la misma que el subject
+
+## ◦ Configuración sencilla
+
+Asegúrese de que sólo se puede acceder a NGINX por el puerto 443. Una vez hecho esto, abra la página
+
+Asegúrese de que se utiliza un certificado SSL/TLS
+
+Asegúrese de que el sitio web de Wordpress está correctamente instalado y configurado (no debería ver la página de instalación de WordPress). Para acceder a él, abra https:://gemartin.42.fr en su navegador, donde login es el nombre de usuario del estudiante de evaluación. No debería poder acceder al sitio a través de http://. Si algo no funciona como se esperaba el final de la evaluación ahora
+
+## ◦ Fundamentos de docker
+
+Empieza por comprobar los dockerfiles. Debe haber un Dockerfile por servicio. Asegúrese de que los dockerfiles no son archivos vacíos. Si no es el caso o si falta un dockerfile, la evaluación termina ahora.
+
+Asegúrese de que el stduent evaluado ha escrito sus propios dockerfiles y construido sus propias imágenes docker. De hecho, está prohibido utilizar las ya hechas o utilizar servicios como dockerhub
+
+Asegurate de que todos los contenedores tienen la penultima version estable debian y si el dockerfile no empieza con FROM debian:XXX la evaluacion termina
+
+Las imágenes docker deben tener el mismo nombre que su servicio correspondiente. De lo contrario , el proceso de evaluación termina ahora.
+
+Asegúrese de que Makefile ha configurado todos los servicios a través de docker compose. Esto significa que los contenedores deben haber sido construidos usando docker compose y que no ha ocurrido ningún crash. De lo contrario, el proceso de evaluación termina.
+
+## ◦ Red Docker
+
+Asegúrate de que se utiliza docker-network comprobando el archivo docker-compose.yml. A continuación, ejecute el comando 'docker network ls' para verificar que hay una red visible.
+
+El alumno evaluado tiene que darle una explicación sencilla de docker-network. Si alguno de los puntos anteriores no es correcto, el proceso de evaluación termina ahora.
+
+## ◦ Nginx con SSL/TLS
+
+Asegúrese de que existe un archivo Dockerfile
+
+Utilizando el comando 'docker compose ps', asegúrese de que el contenedor ha sido creado (utilizando la bandera '-p' está autorizado si es necesario)
+
+Intente acceder a través de http (puerto 80) y compruebe que no puede conectarse.
+
+Abra la URL en su navegador, donde login es el login del estudiante evaluado. La página mostrada debe ser el sitio web de wordpress configurado (no debería ver la página de instalación de WordPress)
+
+El uso de un certificado TLSv1.3 es obligatorio y debe demostrarse. El certificado TLS no tiene que ser reconocido. Puede aparecer un aviso de certificado autofirmado. Si alguno de los puntos anteriores no está claramente explicado y es correcto,el proceso de evaluación termina ahora.
+
+## ◦ Wordpress con php-fpm y su volumen
+
+Asegúrese de que existe un archivo Dockerfile
+
+Asegúrese de que no hay NGINX en el dockerfile
+
+Utilizando el comando 'docker compose ps', asegúrese de que el contenedor ha sido creado (utilizando la bandera '-p' está autorizado si es necesario)
+
+Asegúrese de que hay un Volumen.Para ello: Ejecute el comando 'docker volume ls' y luego 'docker volume inspect <volume name>'. Compruebe que el resultado es la salida estándar contiene la ruta '/home/login/data'
+
+Asegúrese de que puede añadir un comentario utilizando el usuario de WordPress disponible.
+
+Inicie sesión con la cuenta de administrador para acceder al panel de administración. El nombre de usuario de administrador no debe incluir 'admin' o 'Admin'.
+
+Desde el panel de administración, edite una página. Compruebe en el sitio web que la página se ha actualizado. Si alguno de los puntos anteriores no es correcto, el proceso de evaluación termina ahora.
+
+## ◦ MariadDB y su volumen
+
+Asegúrese de que existe un archivo Dockerfile
+
+Asegúrese de que no hay NGINX en el dockerfile
+
+Utilizando el comando 'docker compose ps', asegúrese de que el contenedor ha sido creado (utilizando la bandera '-p' está autorizado si es necesario)
+
+Asegúrese de que hay un Volumen.Para ello: Ejecute el comando 'docker volume ls' y luego 'docker volume inspect <volume name>'. Compruebe que el resultado es la salida estándar contiene la ruta '/home/login/data'
+
+El estudiante evaluado debe ser capaz de explicarle cómo iniciar sesión en la base de datos. Compruebe que la base de datos no está vacía. Si alguno de los puntos anteriores no es correcto, el proceso de evaluación termina ahora.
+
+## ◦ Persistencia!
+
+Esta parte es bastante sencilla. Tienes que reiniciar la máquina virtual. Una vez que se haya reiniciado, ejecute docker compose de nuevo. A continuación, comprueba que todo funciona y que tanto WordPress como MariaDB están configurados. Los cambios que hiciste anteriormente en el sitio web de WordPress deberían seguir aquí. Si alguno de los puntos anteriores no es correcto, el proceso de evaluación termina ahora.
 
 
 
