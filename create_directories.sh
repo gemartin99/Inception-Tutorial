@@ -24,3 +24,4 @@ mkdir -p inception/srcs/requirements/nginx/tools
 mkdir -p inception/srcs/requirements/nginx/conf
 touch inception/srcs/requirements/nginx/Dockerfile
 touch inception/srcs/requirements/nginx/.dockerignore
+
