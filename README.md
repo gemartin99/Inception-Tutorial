@@ -257,7 +257,32 @@ location ~ → Define como manejar las peticiones terminadas en .php.
 
 ## Dockerfile
 
+```
+FROM debian:10.11
+
+RUN apt-get update && \
+	apt-get install -y \
+	mariadb-server
+
+COPY conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
+
+RUN mkdir -p /var/run/mysqld \
+	&& chown -R mysql:mysql /var/run/mysqld \
+	&& chmod 777 /var/run/mysqld
+
+EXPOSE 3306
+
+COPY ./tools/mariadb.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/mariadb.sh
+
+RUN mysql_install_db
+
+ENTRYPOINT [ "/usr/local/bin/mariadb.sh" ]
+```
+
 ## Conf file
+
+<img width="531" alt="Screen Shot 2023-11-24 at 3 24 23 AM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/971d0f40-f276-4e1a-a14a-51904d09384e">
 
 ## Script MariaDB
 
@@ -285,7 +310,37 @@ location ~ → Define como manejar las peticiones terminadas en .php.
 
 ## Dockerfile
 
+```
+FROM debian:10.11
+
+RUN apt-get update && apt-get -y install \
+    curl \
+    php7.3-fpm \
+    php7.3-mysqli \
+    mariadb-client
+
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
+
+COPY conf/www.conf /etc/php/7.3/fpm/pool.d/
+
+RUN mkdir -p /run/php
+RUN chmod 755 /run/php
+
+COPY ./tools/wp.sh /usr/local/bin/wp.sh
+RUN chmod +x /usr/local/bin/wp.sh
+
+EXPOSE 9000
+
+WORKDIR /var/www/html/
+
+ENTRYPOINT [ "/usr/local/bin/wp.sh" ]
+```
+
 ## Conf file
+
+<img width="501" alt="Screen Shot 2023-11-24 at 3 25 50 AM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/f5ec2989-d929-4547-89d1-627d1863be7b">
 
 ## Script Wordpress
 
