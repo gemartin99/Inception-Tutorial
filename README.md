@@ -1,6 +1,6 @@
 # Antes de leer nada
 
-No es un tutorial como tal, estoy centrado en terminar el Common core y por ahora no dedicare mucho tiempo a esta guia pero estos son apuntes que he ido haciendo y explicaciones. Si te sirven de ayuda para realizar tu proyecto genial. Todavia le falta mucho trabajo a este tutorial. 
+No es un tutorial como tal, estoy centrado en otras cosas y por ahora no dedicare mucho tiempo a esta guia pero estos son apuntes que he ido haciendo y explicaciones. Si te sirven de ayuda para realizar tu proyecto genial. Todavia le falta mucho trabajo a este tutorial. 
 
 # Inception-Tutorial
 Tutorial to install Debian virtual machine with multiple virtualised Docker images
