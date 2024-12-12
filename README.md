@@ -5,12 +5,12 @@ No es un tutorial como tal, estoy centrado en otras cosas y por ahora no dedicar
 # Índice
 
 1. [Descargar imagen de la máquina virtual 💿](#1--descargar-imagen-de-la-maquina-virtual-)
-2. [Instalación de la máquina 🛠]()
+2. [Instalación de la máquina 🛠](#2--instalacion-de-la-maquina-)
 3. [Archivo YML 📄](#3--archivo-yml-)
-4. [Configuración Nginx 🌐]()
-5. [Configuración MariaDB 🗄]()
-6. [Configuración WordPress ✍🏻]()
-7. [Hoja de corrección ✅]()
+4. [Configuración Nginx 🌐](#4--configuración-nginx-)
+5. [Configuración MariaDB 🦭](#5--configuración-mariadb-)
+6. [Configuración WordPress ✍🏻](#6--configuración-wordpress-)
+7. [Hoja de corrección ✅](#7--hoja-de-corrección-)
 
 ## 1- Descargar imagen de la maquina virtual 💿
 
@@ -260,7 +260,7 @@ location / → Define como manejar las peticiones a rutas que no coinciden con o
 
 location ~ → Define como manejar las peticiones terminadas en .php.
 
-## 5- Configuración MariaDB 🗄
+## 5- Configuración MariaDB 🦭
 
 ### Dockerfile
 
