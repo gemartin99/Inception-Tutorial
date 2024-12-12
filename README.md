@@ -2,10 +2,17 @@
 
 No es un tutorial como tal, estoy centrado en otras cosas y por ahora no dedicare mucho tiempo a esta guia pero estos son apuntes que he ido haciendo y explicaciones. Si te sirven de ayuda para realizar tu proyecto genial. Todavia le falta mucho trabajo a este tutorial. 
 
-# Inception-Tutorial
-Tutorial to install Debian virtual machine with multiple virtualised Docker images
+# Índice
 
-## 1- _Descargar imagen de la maquina virtual_ 💿
+1. [Descargar imagen de la máquina virtual 💿](#1--descargar-imagen-de-la-maquina-virtual-)
+2. [Instalación de la máquina 🛠]()
+3. [Archivo YML 📄](#3--archivo-yml-)
+4. [Configuración Nginx 🌐]()
+5. [Configuración MariaDB 🗄]()
+6. [Configuración WordPress ✍🏻]()
+7. [Hoja de corrección ✅]()
+
+## 1- Descargar imagen de la maquina virtual 💿
 
 [Click aqui](https://www.debian.org/distrib/index.es.html) para redireccionarte a la URL donde puedes descargar la ISO de manera segura.
 
@@ -22,7 +29,7 @@ Para realizar la instalación se requiere de un software de virtualización. En 
 
 
 
-## Archivo .yml
+## 3- Archivo YML 📄
 
 🧠 Que es un archivo yml❓
 
@@ -136,11 +143,11 @@ driver_opts → Es un conjunto de opciones especificas del controlador que permi
 - o (opciones de montaje) → Esta es una serie de opciones que se utilizan cuando se monta el volumen. En este caso, o: bind indica que se debe realizar un enlace directo (bind) entre el volumen y el directorio del host, lo que permite que los datos sean accesibles desde el sistema de archivos del host.
 
 
-# Nginx
+## 4- Configuración Nginx 🌐 
 
 🧠 Que es un dockerfile❓ Es un archivo de configuración utilizado para construir una imagen de contenedor en Docker.
 
-## Dockerfile 
+### Dockerfile 
 
 ```
 FROM debian:10.11
@@ -174,7 +181,7 @@ ENTRYPOINT → Define el comando que se ejecutara cuando el contenedor se inicie
 
 CMD → Establece el comando predeterminado que se ejecutara cuando el contenedor se inicie. En este caso lo que haremos sera iniciar el servidor nginx en modo demonio, esto lo que quiere decir es que el servidor se queda en ejecucion en segundo plano. La terminal esta libre para que el usuario, es decir, nosotros podamos utilizarla.
 
-## Script Nginx
+### Script Nginx
 
 ```
 #!/bin/bash
@@ -202,7 +209,7 @@ Resumidamente , lo que hara este script es verificar si el certificado SSL (ngin
 
 -subj → Establece los detalles del sujeto del certificado.
 
-## Configuracion servidor nginx
+### Configuración servidor Nginx
 
 ```
 server {
@@ -253,9 +260,9 @@ location / → Define como manejar las peticiones a rutas que no coinciden con o
 
 location ~ → Define como manejar las peticiones terminadas en .php.
 
-# MariaDB
+## 5- Configuración MariaDB 🗄
 
-## Dockerfile
+### Dockerfile
 
 ```
 FROM debian:10.11
@@ -280,11 +287,11 @@ RUN mysql_install_db
 ENTRYPOINT [ "/usr/local/bin/mariadb.sh" ]
 ```
 
-## Conf file
+### Conf file
 
 <img width="531" alt="Screen Shot 2023-11-24 at 3 24 23 AM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/971d0f40-f276-4e1a-a14a-51904d09384e">
 
-## Script MariaDB
+### Script MariaDB
 
 <img width="805" alt="Screen Shot 2023-06-20 at 12 07 06 PM" src="https://github.com/gemartin99/inception/assets/66915274/0af6986c-f984-42c1-8a05-551b21ef3e25">
 
@@ -306,9 +313,9 @@ ENTRYPOINT [ "/usr/local/bin/mariadb.sh" ]
 
 ⚪️ Iniciamos el servidor MySQL de nuevo. Hemos realizado este reinicio para que el servidor se inicie con la configuracion y cambios realizados en el script.
 
-# WordPress
+## 6- Configuración WordPress ✍🏻
 
-## Dockerfile
+### Dockerfile
 
 ```
 FROM debian:10.11
@@ -338,11 +345,11 @@ WORKDIR /var/www/html/
 ENTRYPOINT [ "/usr/local/bin/wp.sh" ]
 ```
 
-## Conf file
+### Conf file
 
 <img width="501" alt="Screen Shot 2023-11-24 at 3 25 50 AM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/f5ec2989-d929-4547-89d1-627d1863be7b">
 
-## Script Wordpress
+### Script Wordpress
 
 <img width="1008" alt="Screen Shot 2023-10-13 at 10 55 20 PM" src="https://github.com/gemartin99/Inception-Tutorial/assets/66915274/caa9880f-8b3f-44f2-b303-8a214349e9de">
 
@@ -360,7 +367,18 @@ ENTRYPOINT [ "/usr/local/bin/wp.sh" ]
 
 🟤 Iniciamos el servicio PHP-FPM en segundo plano y lo dejamos en ejecucion constante con -F.
 
-# Preguntas evaluacion 
+
+<br>
+<br>
+<br>
+
+#
+# Este tutorial ha llevado mucho trabajo, si crees que te ha sido útil agradeceria mucho starred 🌟 para que así se comparta y pueda ayudar a más estudiantes 👨🏻‍🎓❤️
+<br>
+<br>
+<br>
+
+## 7- Hoja de corrección ✅ 
 
 ## ◦ Resumen del proyecto
 
