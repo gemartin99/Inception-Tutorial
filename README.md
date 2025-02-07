@@ -1,7 +1,3 @@
-# Antes de leer nada
-
-No es un tutorial como tal, estoy centrado en otras cosas y por ahora no dedicare mucho tiempo a esta guia pero estos son apuntes que he ido haciendo y explicaciones. Si te sirven de ayuda para realizar tu proyecto genial. Todavia le falta mucho trabajo a este tutorial. 
-
 # Índice
 
 1. [Descargar imagen de la máquina virtual 💿](#1--descargar-imagen-de-la-maquina-virtual-)
