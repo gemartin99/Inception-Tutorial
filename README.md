@@ -16,15 +16,6 @@
 
 Para realizar la instalación se requiere de un software de virtualización. En este tutorial haremos uso de [VirtualBox](https://www.virtualbox.org/). Si ya tienes VirtualBox instalado y dispones de la ISO Debian ya podemos empezar con el tutorial.
 
-1 ◦ Debemos abrir VirtualBox y pinchar sobre ```New```
-
-
-
-2 ◦ Escogemos el nombre de nuestra máquina y la carpeta donde estará ubicada. Importante introducir la maquina dentro de la carpeta sgoinfre ya que si no la ubicamos ahí nos quedaremos sin espacio y fallará la instalación (dependiendo del campus la ruta de sgoinfre puede cambiar).
-
-
-
-
 ## 3- Archivo YML 📄
 
 🧠 Que es un archivo yml❓
